@@ -45,7 +45,7 @@ void ReadFromFileToAssistants()
         printf("File open error\n assistants.txt");
         exit(1);
     }
-    printf("File opened");
+    //printf("File opened");
 
 
     int c;
@@ -102,7 +102,7 @@ void ReadFromFileToAssistants()
 	//Get Surname
     a.Filename = malloc(0*sizeof(char));
 	Length = 0;
-    while((c = getc(fp))!= ' ')
+    while((c = getc(fp))!= 10)
     {
         //uzunluðunu al
         Length++;
@@ -114,16 +114,19 @@ void ReadFromFileToAssistants()
     //print id as we read
 	//printf("%s",a.Filename);
 	
-	//add .csv to filename.
+	//append .csv to filename.
 	Length+=4;
 	a.Filename = realloc(a.Filename,Length*sizeof(char));
 	a.Filename[Length-4]='.';
 	a.Filename[Length-3]='c';
 	a.Filename[Length-2]='s';
 	a.Filename[Length-1]='v';
+	//print as we append
+	//printf("%s",a.Filename);
 	
-	
-	
+	//test return
+	//c = 10;
+	//printf("%c",c);
 	
 	
 	
