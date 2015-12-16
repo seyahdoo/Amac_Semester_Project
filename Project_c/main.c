@@ -29,6 +29,27 @@ typedef struct{
     WORK *Works;
 }ASSITANT;
 
+ASSITANT *Assitants;
+int AssistantCount = 0;
+
+void ReadFromFileToAssistants()
+{
+    AssistantCount = 0;
+
+    FILE *fp;
+
+
+
+
+
+}
+
+
+
+
+
+
+
 int main()
 {
 
