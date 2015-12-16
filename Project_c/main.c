@@ -57,12 +57,9 @@ void ReadFromFileToAssistants()
 	AssistantCount++;
 	Assistants = realloc(Assistants,AssistantCount*sizeof(ASSISTANT));
 	int c;
-	ReadFromFileToAssistants(Assistants,fp);
-	PrintAssistant(Assistants);
+	c = ReadAssistantLine(&Assistants[AssistantCount-1],fp);
+	PrintAssistant(&Assistants[AssistantCount-1]);
 
- 	ASSISTANT a;
-	a.ID = "sdasd";
-	PrintAssistant(&a);
 
 }
 
@@ -96,7 +93,7 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
 
     }
     //print id as we read
-	//printf("%s",a->ID);
+	//printf("%s\n",a->ID);
 
 
 	//Get Name
@@ -112,7 +109,7 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
         a->Name[Length-1] = c;
     }
     //print id as we read
-	//printf("%s",a->Name);
+	//printf("%s\n",a->Name);
 
 	//Get Surname
     a->Surname = malloc(0*sizeof(char));
