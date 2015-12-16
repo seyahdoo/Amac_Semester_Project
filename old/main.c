@@ -44,7 +44,7 @@ void ReadFromFileToAssistants()
     fp = fopen("assistants.txt","r");
     if(!fp)
     {
-        printf("File open error\n assistants.txt");
+        printf("File open error\n-assistants.txt");
         exit(1);
     }
     //printf("File opened");
@@ -53,9 +53,16 @@ void ReadFromFileToAssistants()
 	Assistants = malloc(0);
 	AssistantCount = 0;	
 	
+	AssistantCount++;
+	Assistants = realloc(Assistants,AssistantCount*sizeof(ASSISTANT));
+	int c;
+	ReadFromFileToAssistants(Assistants,fp);
+	PrintAssistant(Assistants);
+ 	
+ 	ASSISTANT a;
+	a.ID = "sdasd";
+	PrintAssistant(&a);
 	
- 	   
-
 }
 
 
