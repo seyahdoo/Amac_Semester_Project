@@ -114,6 +114,13 @@ void ReadFromFileToAssistants()
     //print id as we read
 	//printf("%s",a.Filename);
 	
+	//add .csv to filename.
+	Length+=4;
+	a.Filename = realloc(a.Filename,Length*sizeof(char));
+	a.Filename[Length-4]='.';
+	a.Filename[Length-3]='c';
+	a.Filename[Length-2]='s';
+	a.Filename[Length-1]='v';
 	
 	
 	
