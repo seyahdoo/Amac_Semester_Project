@@ -66,7 +66,7 @@ void ReadFromFileToAssistants()
 
     }
     //print id as we read
-	printf("%s",a.ID);
+	//printf("%s",a.ID);
 	
 	
 	//Get Name
@@ -82,7 +82,7 @@ void ReadFromFileToAssistants()
         a.Name[Length-1] = c;   
     }
     //print id as we read
-	printf("%s",a.Name);
+	//printf("%s",a.Name);
 	
 	//Get Surname
     a.Surname = malloc(0*sizeof(char));
@@ -97,7 +97,23 @@ void ReadFromFileToAssistants()
         a.Surname[Length-1] = c;   
     }
     //print id as we read
-	printf("%s",a.Surname);
+	//printf("%s",a.Surname);
+	
+	//Get Surname
+    a.Filename = malloc(0*sizeof(char));
+	Length = 0;
+    while((c = getc(fp))!= ' ')
+    {
+        //uzunluðunu al
+        Length++;
+		//o uzunlukta string yer aç
+        a.Filename = realloc(a.Filename,Length*sizeof(char));
+        //son karakteri kaydet
+        a.Filename[Length-1] = c;   
+    }
+    //print id as we read
+	//printf("%s",a.Filename);
+	
 	
 	
 	
