@@ -28,9 +28,9 @@ typedef struct{
     char *Surname;
     char *Filename;
     WORK *Works;
-}ASSITANT;
+}ASSISTANT;
 
-ASSITANT *Assitants;
+ASSISTANT *Assistants;
 int AssistantCount = 0;
 
 void ReadFromFileToAssistants()
@@ -47,97 +47,94 @@ void ReadFromFileToAssistants()
     }
     //printf("File opened");
 
+	
+    
 
-    int c;
-    ASSITANT a;
+}
+
+void ReadAssistantLine(ASSISTANT *a,FILE *fp)
+{
+	
+	int c;
     int Length;
     
 	//Get ID
-	a.ID = malloc(0*sizeof(char));
+	a->ID = malloc(0*sizeof(char));
 	Length = 0;
     while((c = getc(fp))!= ' ')
     {
         //uzunluğunu al
         Length++;
         //o uzunlukta string yer aç
-        a.ID = realloc(a.ID,Length*sizeof(char));
+        a->ID = realloc(a->ID,Length*sizeof(char));
         //son satırı kaydet
-        a.ID[Length-1] = c;
+        a->ID[Length-1] = c;
 
     }
     //print id as we read
-	//printf("%s",a.ID);
+	//printf("%s",a->ID);
 	
 	
 	//Get Name
-    a.Name = malloc(0*sizeof(char));
+    a->Name = malloc(0*sizeof(char));
 	Length = 0;
     while((c = getc(fp))!= ' ')
     {
         //uzunluğunu al
         Length++;
 		//o uzunlukta string yer aç
-        a.Name = realloc(a.Name,Length*sizeof(char));
+        a->Name = realloc(a->Name,Length*sizeof(char));
         //son karakteri kaydet
-        a.Name[Length-1] = c;   
+        a->Name[Length-1] = c;   
     }
     //print id as we read
-	//printf("%s",a.Name);
+	//printf("%s",a->Name);
 	
 	//Get Surname
-    a.Surname = malloc(0*sizeof(char));
+    a->Surname = malloc(0*sizeof(char));
 	Length = 0;
     while((c = getc(fp))!= ' ')
     {
         //uzunluğunu al
         Length++;
 		//o uzunlukta string yer aç
-        a.Surname = realloc(a.Surname,Length*sizeof(char));
+        a->Surname = realloc(a->Surname,Length*sizeof(char));
         //son karakteri kaydet
-        a.Surname[Length-1] = c;   
+        a->Surname[Length-1] = c;   
     }
     //print id as we read
-	//printf("%s",a.Surname);
+	//printf("%s",a->Surname);
 	
 	//Get Surname
-    a.Filename = malloc(0*sizeof(char));
+    a->Filename = malloc(0*sizeof(char));
 	Length = 0;
     while((c = getc(fp))!= 10)
     {
         //uzunluğunu al
         Length++;
 		//o uzunlukta string yer aç
-        a.Filename = realloc(a.Filename,Length*sizeof(char));
+        a->Filename = realloc(a->Filename,Length*sizeof(char));
         //son karakteri kaydet
-        a.Filename[Length-1] = c;   
+        a->Filename[Length-1] = c;   
     }
     //print id as we read
-	//printf("%s",a.Filename);
+	//printf("%s",a->Filename);
 	
 	//append .csv to filename.
 	Length+=4;
-	a.Filename = realloc(a.Filename,Length*sizeof(char));
-	a.Filename[Length-4]='.';
-	a.Filename[Length-3]='c';
-	a.Filename[Length-2]='s';
-	a.Filename[Length-1]='v';
+	a->Filename = realloc(a->Filename,Length*sizeof(char));
+	a->Filename[Length-4]='.';
+	a->Filename[Length-3]='c';
+	a->Filename[Length-2]='s';
+	a->Filename[Length-1]='v';
 	//print as we append
-	//printf("%s",a.Filename);
+	//printf("%s",a->Filename);
 	
 	//test return
 	//c = 10;
 	//printf("%c",c);
 	
-	
-	
-	
-
-
-
-
 }
-
-
 
 
 
