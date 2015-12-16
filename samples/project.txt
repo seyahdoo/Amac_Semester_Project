@@ -1,3 +1,4 @@
+///written by günay.
 KONU
 ****
 C dili ile bir görev atamasý aracý oluþturun. Programýnýz verilen sýnavlar için uygun araþtýrma görevlilerinin isimlerini gösterecek. N haftalýk program ve 1 sýnav takvimi sisteminize verilecek ve sisteminiz her sýnav için aday isimlerini atayacak. Sistem hakkýnda detaylar aþaðýda verildi. Lütfen dikkatli bir þekilde okuyunuz ve programýnýzý yazarken bunlara uygun olmasýna özen gösteriniz.
