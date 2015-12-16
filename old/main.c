@@ -30,13 +30,15 @@ typedef struct{
     WORK *Works;
 }ASSISTANT;
 
+void ReadFromFileToAssistants();
+int ReadAssistantLine(ASSISTANT*,FILE*);
+void PrintAssistant(ASSISTANT*);
+
 ASSISTANT *Assistants;
-int AssistantCount = 0;
+int AssistantCount;
 
 void ReadFromFileToAssistants()
 {
-    AssistantCount = 0;
-
     FILE *fp;
 
     fp = fopen("assistants.txt","r");
@@ -46,13 +48,27 @@ void ReadFromFileToAssistants()
         exit(1);
     }
     //printf("File opened");
-
 	
-    
+	//define a place for assistants
+	Assistants = malloc(0);
+	AssistantCount = 0;	
+	
+	
+ 	   
 
 }
 
-void ReadAssistantLine(ASSISTANT *a,FILE *fp)
+
+void PrintAssistant(ASSISTANT *a)
+{
+	///simply print an assistant;
+	printf("ID: %s \n",a->ID);
+	printf("Name: %s \n",a->Name);
+	printf("Surname: %s \n",a->Surname);
+	printf("Filename: %s",a->Filename);
+}
+
+int ReadAssistantLine(ASSISTANT *a,FILE *fp)
 {
 	
 	int c;
@@ -108,14 +124,18 @@ void ReadAssistantLine(ASSISTANT *a,FILE *fp)
 	//Get Surname
     a->Filename = malloc(0*sizeof(char));
 	Length = 0;
-    while((c = getc(fp))!= 10)
+	//get a char from file
+	c = getc(fp);
+    while(c != 10 && c != EOF)
     {
         //uzunluðunu al
         Length++;
 		//o uzunlukta string yer aç
         a->Filename = realloc(a->Filename,Length*sizeof(char));
         //son karakteri kaydet
-        a->Filename[Length-1] = c;   
+        a->Filename[Length-1] = c;
+		//get a char from file
+		c = getc(fp);   
     }
     //print id as we read
 	//printf("%s",a->Filename);
@@ -134,6 +154,7 @@ void ReadAssistantLine(ASSISTANT *a,FILE *fp)
 	//c = 10;
 	//printf("%c",c);
 	
+	return c;
 }
 
 
