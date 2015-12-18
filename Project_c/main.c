@@ -57,12 +57,18 @@ void ReadFromFileToAssistants()
 	Assistants = malloc(0);
 	AssistantCount = 0;
 
+    int c;
+
     //read assistants from file line to line
-	AssistantCount++;
-	Assistants = realloc(Assistants,AssistantCount*sizeof(ASSISTANT));
-	int c;
-	c = ReadAssistantLine(&Assistants[AssistantCount-1],fp);
-	PrintAssistant(&Assistants[AssistantCount-1]);
+	do
+    {
+        AssistantCount++;
+        Assistants = realloc(Assistants,AssistantCount*sizeof(ASSISTANT));
+        c = ReadAssistantLine(&Assistants[AssistantCount-1],fp);
+        PrintAssistant(&Assistants[AssistantCount-1]);
+    }while (c != EOF);//it is the end of file ,
+
+
 
 
 }
@@ -70,15 +76,15 @@ void ReadFromFileToAssistants()
 void PrintAssistant(ASSISTANT *a)
 {
 	///simply print an assistant;
+	printf("\n");
 	printf("ID: %s \n",a->ID);
 	printf("Name: %s \n",a->Name);
 	printf("Surname: %s \n",a->Surname);
-	printf("Filename: %s",a->Filename);
+	printf("Filename: %s \n",a->Filename);
 }
 
 int ReadAssistantLine(ASSISTANT *a,FILE *fp)
 {
-
 	int c;
     int Length;
 
@@ -98,8 +104,8 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
     //End the string
     a->ID[Length] = NULL;
 
-    //print id as we read
-	printf("%s\n",a->ID);
+    //print as we read
+	//printf("%s\n",a->ID);
 
 	//Get Name
     a->Name = malloc(0*sizeof(char));
@@ -117,7 +123,7 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
     //End the string
     a->Name[Length] = NULL;
 
-    //print id as we read
+    //print as we read
 	//printf("%s\n",a->Name);
 
 	//Get Surname
@@ -136,7 +142,7 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
     //End the string
     a->Surname[Length] = NULL;
 
-    //print id as we read
+    //print as we read
 	//printf("%s",a->Surname);
 
 	//Get Surname
@@ -159,8 +165,8 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
     //End the string
     a->Filename[Length] = NULL;
 
-    //print id as we read
-	printf("%s",a->Filename);
+    //print as we read
+	//printf("%s",a->Filename);
 
 	//append .csv to filename.
 	Length+=4;
@@ -180,12 +186,12 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
 	//c = 10;
 	//printf("%c",c);
 
+    //test todo: delete this
+    PrintAssistant(a);
+
     //Satır sonunu dön.
 	return c;
 }
-
-
-
 
 
 int main()
