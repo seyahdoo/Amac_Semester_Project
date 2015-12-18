@@ -32,14 +32,36 @@ typedef struct{
     WORK *Works;
 }ASSISTANT;
 
-void ReadFromFileToAssistants();
+void ReadAssistantsFromFile();
 int ReadAssistantLine(ASSISTANT*,FILE*);
 void PrintAssistant(ASSISTANT*);
 
 ASSISTANT *Assistants;
 int AssistantCount;
 
-void ReadFromFileToAssistants()
+
+int main()
+{
+    ReadAssistantsFromFile();
+
+
+
+
+    system("PAUSE");
+    return 0;
+}
+
+void PrintAssistant(ASSISTANT *a)
+{
+	///simply print an assistant;
+	printf("\n");
+	printf("ID: %s \n",a->ID);
+	printf("Name: %s \n",a->Name);
+	printf("Surname: %s \n",a->Surname);
+	printf("Filename: %s \n",a->Filename);
+}
+
+void ReadAssistantsFromFile()
 {
     FILE *fp;
 
@@ -62,25 +84,18 @@ void ReadFromFileToAssistants()
     //read assistants from file line to line
 	do
     {
+        //Keep Count of Assistants
         AssistantCount++;
+
+        //Allocate for assistants
         Assistants = realloc(Assistants,AssistantCount*sizeof(ASSISTANT));
+
+        //Read one assistant
         c = ReadAssistantLine(&Assistants[AssistantCount-1],fp);
-        PrintAssistant(&Assistants[AssistantCount-1]);
-    }while (c != EOF);//it is the end of file ,
 
+        //PrintAssistant(&Assistants[AssistantCount-1]);
+    }while (c != EOF);//if is the end of file
 
-
-
-}
-
-void PrintAssistant(ASSISTANT *a)
-{
-	///simply print an assistant;
-	printf("\n");
-	printf("ID: %s \n",a->ID);
-	printf("Name: %s \n",a->Name);
-	printf("Surname: %s \n",a->Surname);
-	printf("Filename: %s \n",a->Filename);
 }
 
 int ReadAssistantLine(ASSISTANT *a,FILE *fp)
@@ -191,15 +206,6 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
 
     //Satır sonunu dön.
 	return c;
-}
-
-
-int main()
-{
-    ReadFromFileToAssistants();
-
-    system("PAUSE");
-    return 0;
 }
 
 
