@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define ASSISTANTINFOTEXTFILE "assistants.txt"
+
 typedef enum{
 	Free,
 	Lab,
@@ -41,10 +43,11 @@ void ReadFromFileToAssistants()
 {
     FILE *fp;
 
-    fp = fopen("assistants.txt","r");
+    //Open the file to read
+    fp = fopen(ASSISTANTINFOTEXTFILE,"r");
     if(fp == NULL)
     {
-        printf("File open error\n-assistants.txt");
+        printf("File open error\n- Assistant storage file");
         system("PAUSE");
         exit(10);//'0xA'
     }
@@ -54,6 +57,7 @@ void ReadFromFileToAssistants()
 	Assistants = malloc(0);
 	AssistantCount = 0;
 
+    //read assistants from file line to line
 	AssistantCount++;
 	Assistants = realloc(Assistants,AssistantCount*sizeof(ASSISTANT));
 	int c;
@@ -62,7 +66,6 @@ void ReadFromFileToAssistants()
 
 
 }
-
 
 void PrintAssistant(ASSISTANT *a)
 {
@@ -84,30 +87,36 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
 	Length = 0;
     while((c = getc(fp))!= ' ')
     {
-        //uzunluðunu al
+        //Calculate Length
         Length++;
-        //o uzunlukta string yer aç
-        a->ID = realloc(a->ID,Length*sizeof(char));
-        //son satýrý kaydet
+        //Allocate for string
+        a->ID = realloc(a->ID,(Length+1)*sizeof(char));
+        //Get the last Character
         a->ID[Length-1] = c;
-
     }
-    //print id as we read
-	//printf("%s\n",a->ID);
 
+    //End the string
+    a->ID[Length] = NULL;
+
+    //print id as we read
+	printf("%s\n",a->ID);
 
 	//Get Name
     a->Name = malloc(0*sizeof(char));
 	Length = 0;
     while((c = getc(fp))!= ' ')
     {
-        //uzunluðunu al
+        //Calculate Length
         Length++;
-		//o uzunlukta string yer aç
+		//Allocate for string
         a->Name = realloc(a->Name,Length*sizeof(char));
-        //son karakteri kaydet
+        //Get the last Character
         a->Name[Length-1] = c;
     }
+
+    //End the string
+    a->Name[Length] = NULL;
+
     //print id as we read
 	//printf("%s\n",a->Name);
 
@@ -116,13 +125,17 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
 	Length = 0;
     while((c = getc(fp))!= ' ')
     {
-        //uzunluðunu al
+        //Calculate Length
         Length++;
-		//o uzunlukta string yer aç
+		//Allocate for string
         a->Surname = realloc(a->Surname,Length*sizeof(char));
-        //son karakteri kaydet
+        //Get the last Character
         a->Surname[Length-1] = c;
     }
+
+    //End the string
+    a->Surname[Length] = NULL;
+
     //print id as we read
 	//printf("%s",a->Surname);
 
@@ -133,17 +146,21 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
 	c = getc(fp);
     while(c != 10 && c != EOF)
     {
-        //uzunluðunu al
+        //Calculate Length
         Length++;
-		//o uzunlukta string yer aç
+		//Allocate for string
         a->Filename = realloc(a->Filename,Length*sizeof(char));
-        //son karakteri kaydet
+        //Get the last Character
         a->Filename[Length-1] = c;
 		//get a char from file
 		c = getc(fp);
     }
+
+    //End the string
+    a->Filename[Length] = NULL;
+
     //print id as we read
-	//printf("%s",a->Filename);
+	printf("%s",a->Filename);
 
 	//append .csv to filename.
 	Length+=4;
@@ -152,6 +169,10 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
 	a->Filename[Length-3]='c';
 	a->Filename[Length-2]='s';
 	a->Filename[Length-1]='v';
+
+	//End the string
+    a->Filename[Length] = NULL;
+
 	//print as we append
 	//printf("%s",a->Filename);
 
@@ -159,6 +180,7 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
 	//c = 10;
 	//printf("%c",c);
 
+    //SatÄ±r sonunu dÃ¶n.
 	return c;
 }
 
