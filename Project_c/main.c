@@ -36,6 +36,9 @@ void ReadAssistantsFromFile();
 int ReadAssistantLine(ASSISTANT*,FILE*);
 void PrintAssistant(ASSISTANT*);
 
+void ReadAssistantWorks();
+int GotoNextLine(FILE*);
+
 ASSISTANT *Assistants;
 int AssistantCount;
 
@@ -43,12 +46,83 @@ int AssistantCount;
 int main()
 {
     ReadAssistantsFromFile();
+    ReadAssistantWorks();
 
 
 
-
+    printf("\n");
     system("PAUSE");
     return 0;
+}
+
+int GotoNextLine(FILE *fp)
+{
+    //eol = 10
+
+    int c;
+    do
+    {
+        c = getc(fp);
+    }while (c==10 && c==EOF);
+
+    return c;
+    //fseek()
+}
+
+void ReadAssistantWorks()
+{
+    int c,i;
+
+    FILE *fp;
+
+    //for_each?
+
+    //for every Assistant
+    for(i=0;i<AssistantCount;i++)
+    {
+        //Todo typo!
+        printf("\nGetting %s's work scedule", Assistants[i].Name);
+
+        //open file for that assistant
+        fp = fopen(Assistants[i].Filename,"r");
+        if(fp == NULL)
+        {
+            //Todo typo!
+            printf("File open error\n- Assistant Scedule file");
+            system("PAUSE");
+            exit(10);//'0xA'
+        }
+        //printf("File opened");
+
+        c = GotoNextLine(fp);
+        c = GotoNextLine(fp);
+
+        char Start_hour = 0;
+        char End_Hour = 0;
+        char Start_Minute = 0;
+        char End_Minute = 0;
+
+        //Start hour first digit
+        c = getc(fp);
+        Start_hour += (10*c);
+
+        //Start hour second digit
+        c = getc(fp);
+        Start_hour += c;
+
+
+
+
+
+
+
+
+        fclose(fp);
+    }
+
+
+
+
 }
 
 void PrintAssistant(ASSISTANT *a)
@@ -59,43 +133,6 @@ void PrintAssistant(ASSISTANT *a)
 	printf("Name: %s \n",a->Name);
 	printf("Surname: %s \n",a->Surname);
 	printf("Filename: %s \n",a->Filename);
-}
-
-void ReadAssistantsFromFile()
-{
-    FILE *fp;
-
-    //Open the file to read
-    fp = fopen(ASSISTANTINFOTEXTFILE,"r");
-    if(fp == NULL)
-    {
-        printf("File open error\n- Assistant storage file");
-        system("PAUSE");
-        exit(10);//'0xA'
-    }
-    //printf("File opened");
-
-	//define a place for assistants
-	Assistants = malloc(0);
-	AssistantCount = 0;
-
-    int c;
-
-    //read assistants from file line to line
-	do
-    {
-        //Keep Count of Assistants
-        AssistantCount++;
-
-        //Allocate for assistants
-        Assistants = realloc(Assistants,AssistantCount*sizeof(ASSISTANT));
-
-        //Read one assistant
-        c = ReadAssistantLine(&Assistants[AssistantCount-1],fp);
-
-        //PrintAssistant(&Assistants[AssistantCount-1]);
-    }while (c != EOF);//if is the end of file
-
 }
 
 int ReadAssistantLine(ASSISTANT *a,FILE *fp)
@@ -202,11 +239,47 @@ int ReadAssistantLine(ASSISTANT *a,FILE *fp)
 	//printf("%c",c);
 
     //test todo: delete this
-    PrintAssistant(a);
+    //PrintAssistant(a);
 
     //Satır sonunu dön.
 	return c;
 }
 
+void ReadAssistantsFromFile()
+{
+    FILE *fp;
+
+    //Open the file to read
+    fp = fopen(ASSISTANTINFOTEXTFILE,"r");
+    if(fp == NULL)
+    {
+        printf("File open error\n- Assistant storage file");
+        system("PAUSE");
+        exit(10);//'0xA'
+    }
+    //printf("File opened");
+
+	//define a place for assistants
+	Assistants = malloc(0);
+	AssistantCount = 0;
+
+    int c;
+
+    //read assistants from file line to line
+	do
+    {
+        //Keep Count of Assistants
+        AssistantCount++;
+
+        //Allocate for assistants
+        Assistants = realloc(Assistants,AssistantCount*sizeof(ASSISTANT));
+
+        //Read one assistant
+        c = ReadAssistantLine(&Assistants[AssistantCount-1],fp);
+
+        //PrintAssistant(&Assistants[AssistantCount-1]);
+    }while (c != EOF);//if is the end of file
+
+}
 
 
