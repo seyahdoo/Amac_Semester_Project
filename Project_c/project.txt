@@ -1,0 +1,27 @@
+///written by günay.
+KONU
+****
+C dili ile bir görev atamasý aracý oluþturun. Programýnýz verilen sýnavlar için uygun araþtýrma görevlilerinin isimlerini gösterecek. N haftalýk program ve 1 sýnav takvimi sisteminize verilecek ve sisteminiz her sýnav için aday isimlerini atayacak. Sistem hakkýnda detaylar aþaðýda verildi. Lütfen dikkatli bir þekilde okuyunuz ve programýnýzý yazarken bunlara uygun olmasýna özen gösteriniz.
+
+
+1. Sistemin Detaylarý
+*********************
+Programýnýz her araþtýrma görevlisi için eþsiz id, isim, soyisim, isminin ve soyisminin kýsaltmasýný içeren 1 text dosyasý kullanmalý. Örnek aþaðýda verildi. Aday araþtýrma görevlisinin bilgisi bu dosyada verilmeli.
+
+	Örnek: 9954612784 Ali Yýlmaz AY
+	       1245879631 Hasan Genc HG
+
+Her asistanýnýn programý iliþkili isim kýsaltmasý dosyasý(ancronym.csv) örneðin AY.csv'den okunmalý. Örnek format aþaðýda gösterilmiþtir. Bu dosya haftalýk programý ve iliþkili asistanýn meþgul olduðu saatlerin sayýsýný içermeli.
+
+-----Örnek------
+
+Sýnav takvimi baþka bir dosyada kayýtlý olmalý. Bu dosyada sýnav isimleri, sýnav tarihleri, sýnav zamanlarý ve sýnav süreleri tutulmalý. Programýnýz derlendikten sonra, aday asistanlar ilgili satýra yazýlýyor olmalý. Bir örneði aþaðýda verilmiþtir.
+
+-----Örnek------
+
+Her sýnav için aday asistanlar kendi sorumluluklarýna göre artan bir þekilde sýralanmalý. Aþaðýdaki örnekte, KE ilk sýrada yer alýyor çünkü kendi sýrasýnda en düþük ders miktarýna o sahip. UC ondan daha fazla dersi olduðu için o en sonda yer alýyor. Kýsaltmalarda türkçe karakter kullanmayýnýz.
+
+-----Örnek------
+
+
+Ayrýca, programýnýz yük bilgilerini de raporlamalý. Bölümün ortalama yük sayýsý, ortalamanýn altýndaki araþtýrma görevlisi ve üstündeki araþtýrma görevlisi baþka bir dosyada raporlanmalý.
